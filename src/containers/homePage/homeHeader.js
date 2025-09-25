@@ -21,8 +21,9 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import logo from '../../assets/images/bookingcare-2020.svg';
 import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '../../utils';
-
+import LanguageUtils from '../../utils/LanguageUtils';
 import { changeLanguageApp } from '../../store/actions';
+
 class homeHeader extends Component {
 
     changeLanguage = (language) => {
@@ -113,8 +114,8 @@ class homeHeader extends Component {
                                 <label className='search-field'>
                                     <FontAwesomeIcon icon={faSearch} />
                                     <input type='text'
-                                        placeholder='Tìm kiếm bác sĩ, chuyên khoa, bệnh viện'
                                         className='search-input'
+                                        placeholder={LanguageUtils.getMessageByKey("banner.search-placeholder", language)}
                                     />
                                 </label>
 

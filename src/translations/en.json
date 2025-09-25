@@ -13,6 +13,7 @@
     "banner": {
         "flatform": "Medical facility platform",
         "health-care": "Comprehensive health care",
+        "search-placeholder": "Search doctors, specialties, hospitals",
         "child1": "Specialist examination",
         "child2": "Remote examination",
         "child3": "General examination",
