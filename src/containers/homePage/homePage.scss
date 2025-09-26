@@ -1,0 +1,34 @@
+//reset slick slider select
+.slick-prev {
+    border: 2px solid #d7d7d7 !important;
+    left: -10px !important;
+    background-color: white !important;
+
+    z-index: 1000 !important;
+    height: 48px !important;
+    width: 44px !important;
+
+    &:hover {
+        background-color: #d7d7d7 !important;
+    }
+}
+
+
+
+.slick-next {
+    border: 2px solid #d7d7d7 !important;
+    right: -10px !important;
+    background-color: white !important;
+    height: 48px !important;
+    width: 44px !important;
+
+    &:hover {
+        background-color: #d7d7d7 !important;
+    }
+}
+
+.slick-prev:before,
+.slick-next:before {
+    font-family: fontawesome !important;
+    color: red !important;
+}

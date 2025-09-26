@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import HomeHeader from './homeHeader';
 import Specialty from './Section/Specialty';
+import MedicalFacility from './Section/MedicalFacility';
+import './homePage.scss';
 
 class homePage extends Component {
 
@@ -10,7 +12,7 @@ class homePage extends Component {
             <div>
                 <HomeHeader />
                 <Specialty />
-                <div style={{ height: '500px' }}></div>
+                <MedicalFacility />
             </div>
         );
     }
