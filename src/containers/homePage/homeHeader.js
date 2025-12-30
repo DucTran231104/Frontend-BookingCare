@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import './homeHeader.scss';
 // Old way (v4.7.0)
@@ -9,7 +8,6 @@ import 'font-awesome/css/font-awesome.min.css';
 
 // New way (v5)
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
 // <FontAwesomeIcon icon={faUser} />
 import { faTooth } from '@fortawesome/free-solid-svg-icons';
 
@@ -24,7 +22,28 @@ import { LANGUAGES } from '../../utils';
 import LanguageUtils from '../../utils/LanguageUtils';
 import { changeLanguageApp } from '../../store/actions';
 
+// Banner
+import DefaultBanner from './Banners/DefaultBanner';
+import SpecialtyBanner from './Banners/SpecialtyBanner';
+import FacilityBanner from './Banners/FacilityBanner';
+import DoctorBanner from './Banners/DoctorBanner';
+import PackageBanner from './Banners/PackageBanner';
+
 class homeHeader extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            activeTab: null,          // chưa chọn gì
+            bannerMode: 'default',    // 'default' | 'tab'
+        };
+    }
+
+    setActiveTab = (tab) => {
+        this.setState({
+            activeTab: tab,
+            bannerMode: 'tab',
+        });
+    };
 
     changeLanguage = (language) => {
         // alert("Change language to: " + language);
@@ -32,8 +51,10 @@ class homeHeader extends Component {
         this.props.changeLanguageAppRedux(language);
         console.log("check change language: ", this.props.changeLanguageAppRedux(language));
     }
+
     render() {
         let language = this.props.language;
+        const { bannerMode, activeTab } = this.state;
         console.log("check language from redux: ", this.props.language);
         return (
             <React.Fragment>
@@ -41,50 +62,57 @@ class homeHeader extends Component {
                     <div className='home-header-content'>
                         <div className='home-header-content-left'>
                             <i className='fa fa-bars btn-bars'></i>
-                            <img src={logo} alt='logo' className='home-header-content-left-logo'></img>
+                            <img
+                                src={logo}
+                                alt='logo'
+                                className='home-header-content-left-logo'
+                                style={{ cursor: 'pointer' }}
+                                onClick={() => this.setState({ bannerMode: 'default', activeTab: null })}
+                            />
+
 
                         </div>
 
                         <div className='home-header-content-center'>
-                            <div className='child-content'>
-                                <div><b> <FormattedMessage id="home-header.speciality" /></b></div>
+                            <div
+                                className={this.state.activeTab === 'specialty' ? 'child-content active' : 'child-content'}
+                                onClick={() => this.setActiveTab('specialty')}
+                            >
+                                <div><b><FormattedMessage id="home-header.speciality" /></b></div>
                                 <div className='sub-title'>
                                     <FormattedMessage id="home-header.search-doctor" />
                                 </div>
                             </div>
 
-                            <div className='child-content'>
-
-                                <div>
-                                    <b><FormattedMessage id="home-header.medical-facility" /></b>
-                                </div>
-
+                            <div
+                                className={this.state.activeTab === 'facility' ? 'child-content active' : 'child-content'}
+                                onClick={() => this.setActiveTab('facility')}
+                            >
+                                <div><b><FormattedMessage id="home-header.medical-facility" /></b></div>
                                 <div className='sub-title'>
-                                    <FormattedMessage id="home-header.choose-hospital"></FormattedMessage>
+                                    <FormattedMessage id="home-header.choose-hospital" />
                                 </div>
                             </div>
 
-                            <div className='child-content'>
-
-                                <div>
-                                    <b><FormattedMessage id="home-header.doctor"></FormattedMessage></b>
-                                </div>
-
+                            <div
+                                className={this.state.activeTab === 'doctor' ? 'child-content active' : 'child-content'}
+                                onClick={() => this.setActiveTab('doctor')}
+                            >
+                                <div><b><FormattedMessage id="home-header.doctor" /></b></div>
                                 <div className='sub-title'>
-                                    <FormattedMessage id="home-header.choose-doctor"></FormattedMessage>
+                                    <FormattedMessage id="home-header.choose-doctor" />
                                 </div>
                             </div>
 
-                            <div className='child-content'>
-
-                                <div>
-                                    <b><FormattedMessage id="home-header.medical-examination-package"></FormattedMessage></b>
-                                </div>
-                                <div className='sub-title'><FormattedMessage id="home-header.general-health-check"></FormattedMessage>
+                            <div
+                                className={this.state.activeTab === 'package' ? 'child-content active' : 'child-content'}
+                                onClick={() => this.setActiveTab('package')}
+                            >
+                                <div><b><FormattedMessage id="home-header.medical-examination-package" /></b></div>
+                                <div className='sub-title'>
+                                    <FormattedMessage id="home-header.general-health-check" />
                                 </div>
                             </div>
-
-
                         </div>
 
                         <div className='home-header-content-right'>
@@ -96,96 +124,12 @@ class homeHeader extends Component {
                     </div>
                 </div>
 
-                <div className='home-header-banner'>
-                    <div className='content-up'>
+                {bannerMode === 'default' && <DefaultBanner language={language} />}
 
-                        <div className='title1'>
-                            <FormattedMessage id="banner.flatform"></FormattedMessage>
-
-                        </div>
-
-                        <div className='title2'>
-                            <FormattedMessage id="banner.health-care"></FormattedMessage>
-
-                        </div>
-
-                        <div className='search'>
-                            <section className='search-container'>
-                                <label className='search-field'>
-                                    <FontAwesomeIcon icon={faSearch} />
-                                    <input type='text'
-                                        className='search-input'
-                                        placeholder={LanguageUtils.getMessageByKey("banner.search-placeholder", language)}
-                                    />
-                                </label>
-
-                            </section>
-
-
-                        </div>
-                    </div>
-                    <div className='content-down'>
-                        <div className='option'>
-                            <div className='option-child'>
-                                <div className='icon-child'>
-                                    <FontAwesomeIcon icon={faHospital} />
-                                </div>
-                                <div className='text-child'>
-
-                                    <span><FormattedMessage id="banner.child1"></FormattedMessage></span>
-
-                                </div>
-                            </div>
-                            <div className='option-child'>
-                                <div className='icon-child'>
-                                    <FontAwesomeIcon icon={faMobile} />
-                                </div>
-
-                                <div className='text-child'>
-                                    <span><FormattedMessage id="banner.child2"></FormattedMessage></span>
-
-                                </div>
-                            </div>
-                            <div className='option-child'>
-                                <div className='icon-child'>
-                                    <FontAwesomeIcon icon={faBed} />
-                                </div>
-                                <div className='text-child'>
-                                    <span><FormattedMessage id="banner.child3"></FormattedMessage></span>
-
-                                </div>
-                            </div>
-                            <div className='option-child'>
-                                <div className='icon-child'>
-                                    <FontAwesomeIcon icon={faMedkit} />
-                                </div>
-                                <div className='text-child'>
-                                    <span><FormattedMessage id="banner.child4"></FormattedMessage></span>
-
-                                </div>
-                            </div>
-                            <div className='option-child'>
-                                <div className='icon-child'>
-                                    <i className='far fa-comments' />
-                                </div>
-                                <div className='text-child'>
-                                    <span><FormattedMessage id="banner.child5"></FormattedMessage></span>
-
-                                </div>
-                            </div>
-                            <div className='option-child'>
-                                <div className='icon-child'>
-                                    <FontAwesomeIcon icon={faTooth} />
-                                </div>
-                                <div className='text-child'>
-                                    <span><FormattedMessage id="banner.child6"></FormattedMessage></span>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+                {bannerMode === 'tab' && activeTab === 'specialty' && <SpecialtyBanner />}
+                {bannerMode === 'tab' && activeTab === 'facility' && <FacilityBanner />}
+                {bannerMode === 'tab' && activeTab === 'doctor' && <DoctorBanner />}
+                {bannerMode === 'tab' && activeTab === 'package' && <PackageBanner />}
             </React.Fragment >
         );
     }

@@ -50,6 +50,7 @@
                 justify-content: center;
                 text-align: center;
                 font-size: 16px;
+                cursor: pointer;
 
 
                 .sub-title {
@@ -60,8 +61,9 @@
                     font-family: 'Poppins', sans-serif;
                 }
 
-
-
+                &.active {
+                    border-bottom: 2px solid #45c3d2;
+                }
             }
         }
 

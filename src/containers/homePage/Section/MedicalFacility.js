@@ -4,7 +4,7 @@ import "./MedicalFacility.scss";
 import "./Specialty.scss"
 import Slider from "react-slick";
 import medicalFacility from '../../../assets/MedicalFacility/BenhVienBachMai.jpg';
-import medicalFacility2 from '../../../assets/Specialty/tieu-hoa.png';
+import medicalFacility2 from '../../../assets/Specialty/tieu_hoa.png';
 
 class MedicalFacility extends Component {
 

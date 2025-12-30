@@ -1,0 +1,59 @@
+.banner-specialty {
+  padding: 24px 0;
+  background: #f8fafc;
+}
+
+.banner-tab-body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+
+.banner-up {
+  h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: #555;
+    margin-bottom: 18px;
+    line-height: 1.4;
+  }
+}
+
+.specialty-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.specialty-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 14px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.25s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.specialty-icon {
+  width: 100%;
+  height: 90px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  margin-bottom: 10px;
+}
+
+.specialty-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111;
+}

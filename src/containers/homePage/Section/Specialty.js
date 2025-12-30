@@ -21,9 +21,9 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FormattedMessage } from 'react-intl';
 import "./Specialty.scss"
 import Slider from "react-slick";
-//import picture
-import specialtyImg from '../../../assets/Specialty/CoXuongKhop.jpg';
-import specialtyImg2 from '../../../assets/Specialty/tieu-hoa.png';
+import { SPECIALTIES } from "../../../utils/specialtyData";
+
+
 class Specialty extends Component {
 
     render() {
@@ -38,31 +38,15 @@ class Specialty extends Component {
                     </div>
                     <div className='section-body'>
                         <Slider {...settings}>
-                            <div className='section-customize ' >
-                                <div className='bg-img section-img-specialty' />
-                                <div>Cơ xương khớp 1</div>
-                            </div>
-                            {/* <div className='img-customize img-1'><h3>1</h3></div> */}
-                            <div className='section-customize' >
-                                <div className='bg-img section-img-specialty' />
-                                <div>Cơ xương khớp 2</div>
-                            </div>
-                            <div className='section-customize' >
-                                <div className='bg-img section-img-specialty' />
-                                <div>Tiêu Hóa</div>
-                            </div>
-                            <div className='section-customize' >
-                                <div className='bg-img section-img-specialty' />
-                                <div>Cơ xương khớp 4</div>
-                            </div>
-                            <div className='section-customize' >
-                                <div className='bg-img section-img-specialty' />
-                                <div>Cơ xương khớp 5</div>
-                            </div>
-                            <div className='section-customize' >
-                                <div className='bg-img section-img-specialty' />
-                                <div>Cơ xương khớp 6</div>
-                            </div>
+                            {SPECIALTIES.map((item) => (
+                                <div className="section-customize" key={item.id}>
+                                    <div
+                                        className="bg-img section-img-specialty"
+                                        style={{ backgroundImage: `url(${item.image})` }}
+                                    />
+                                    <div>{item.name}</div>
+                                </div>
+                            ))}
                         </Slider>
                     </div>
 
