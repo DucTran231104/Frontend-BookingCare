@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import "./About.scss";
 
+// path image
+import vnexpress from '../../../assets/media/vnexpress.png';
+import dantri from '../../../assets/media/dantri.png';
+import suckhoedoisong from '../../../assets/media/suckhoedoisong.png';
+import vietnamnet from '../../../assets/media/vietnamnet.png';
+import vtv1 from '../../../assets/media/vtv1.png';
+import vtcnews from '../../../assets/media/vtcnews.png';
+
 class About extends Component {
 
     render() {
@@ -22,14 +30,33 @@ class About extends Component {
                             allowFullScreen></iframe>
                     </div>
                     <div className="content-right" >
-                        <p>
-                            In conventional electronics, only the charge degree of freedom of an election is utilized to
-                            construct devices. The electron also possesses a spin angular momentum which is closely
-                            associated with its magnetic moment. The field of spintronics, or spin-based electronics, exploits
-                            both charge and spin degrees of freedom of electrons to provide additional functionalities to
-                            conventional electronic devices such as non-volatility and reduced power consumption.
-                        </p>
+                        <div className="logo-grid">
 
+                            <a href="https://vnexpress.net" target="_blank" rel="noopener noreferrer">
+                                <img src={vnexpress} alt="VnExpress" />
+                            </a>
+
+                            <a href="https://suckhoedoisong.vn" target="_blank" rel="noopener noreferrer">
+                                <img src={suckhoedoisong} alt="Sức khỏe & Đời sống" />
+                            </a>
+
+                            <a href="https://vietnamnet.vn" target="_blank" rel="noopener noreferrer">
+                                <img src={vietnamnet} alt="Vietnamnet" />
+                            </a>
+
+                            <a href="https://vtv.vn" target="_blank" rel="noopener noreferrer">
+                                <img src={vtv1} alt="VTV1" />
+                            </a>
+
+                            <a href="https://vtcnews.vn" target="_blank" rel="noopener noreferrer">
+                                <img src={vtcnews} alt="VTC News" />
+                            </a>
+
+                            <a href="https://dantri.com.vn" target="_blank" rel="noopener noreferrer">
+                                <img src={dantri} alt="Dân Trí" />
+                            </a>
+
+                        </div>
                     </div>
                 </div>
             </div >
