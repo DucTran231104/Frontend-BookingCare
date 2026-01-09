@@ -12,7 +12,7 @@ const initialState = {
     allDoctors: [],
     hasEmailError: false,
     allScheduleTime: [],
-    // allRequiredDoctorInfo: []
+    allRequireDoctorInfo: []
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -130,17 +130,16 @@ const adminReducer = (state = initialState, action) => {
                 ...state,
             }
 
-        ///////////////
-        // case actionTypes.FETCH_REQUIRE_DOCTOR_INFO_SUCCESS:
-        //     state.allRequiredDoctorInfo = action.data;
-        //     return {
-        //         ...state,
-        //     }
-        // case actionTypes.FETCH_REQUIRE_DOCTOR_INFO_FAILED:
-        //     state.allRequireData = [];
-        //     return {
-        //         ...state,
-        //     }
+        case actionTypes.FETCH_REQUIRE_DOCTOR_INFO_SUCCESS:
+            state.allRequiredDoctorInfo = action.data;
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_REQUIRE_DOCTOR_INFO_FAILED:
+            state.allRequireDoctorInfo = [];
+            return {
+                ...state,
+            }
         default:
             return state;
     }
